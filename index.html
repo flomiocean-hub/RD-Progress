@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>若善設計 × SEO 進度報告</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+  :root {
+    --ink:    #1A1814;
+    --warm:   #FAF7F2;
+    --sand:   #EDE8DF;
+    --accent: #C4783A;
+    --accent2:#3A6B5C;
+    --muted:  #6B655F;
+    --rule:   #D8D3CA;
+    --green:  #3A6B5C;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+  }
+
+  /* HEADER */
+  .header {
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .eyebrow::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--accent);
+  }
+  .header h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 300; line-height: 1.3;
+    letter-spacing: .04em; margin-bottom: 1rem;
+  }
+  .header h1 em { font-style: normal; color: var(--accent); }
+  .header-sub {
+    font-size: 14px; color: var(--muted); max-width: 500px; line-height: 1.8;
+  }
+
+  /* SECTION TITLE */
+  .section-label {
+    font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* REPORT CARDS */
+  .cards { display: flex; flex-direction: column; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 3rem; }
+
+  .card {
+    background: var(--warm);
+    padding: 1.5rem;
+    display: flex; align-items: flex-start; gap: 1.25rem;
+    text-decoration: none; color: inherit;
+    transition: background .15s;
+  }
+  .card:hover { background: var(--sand); }
+
+  .card-badge {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500; letter-spacing: .04em;
+    text-align: center; line-height: 1.3;
+  }
+  .badge-done  { background: #EAF2EF; color: var(--green); }
+  .badge-next  { background: #FDF3E3; color: #8B5E00; }
+  .badge-plan  { background: var(--sand); color: var(--muted); }
+
+  .card-body { flex: 1; }
+  .card-meta {
+    font-size: 11px; color: var(--muted); letter-spacing: .06em;
+    text-transform: uppercase; margin-bottom: .3rem;
+  }
+  .card-title { font-size: 15px; font-weight: 500; margin-bottom: .3rem; }
+  .card-desc  { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  .card-arrow {
+    flex-shrink: 0; color: var(--muted); font-size: 18px;
+    padding-top: 2px; transition: transform .15s;
+  }
+  .card:hover .card-arrow { transform: translateX(4px); color: var(--accent); }
+
+  /* STATUS ROW */
+  .status-row {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+    padding: 1.25rem;
+    background: var(--sand);
+    border-radius: 2px;
+    margin-bottom: 3rem;
+  }
+  .status-item { font-size: 12px; color: var(--muted); }
+  .status-item strong { color: var(--ink); display: block; font-size: 13px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 12px; color: var(--muted); line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .card-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div class="eyebrow">若善設計 × Readie AI</div>
+    <h1>SEO 導入<em>進度報告</em></h1>
+    <p class="header-sub">
+      記錄若善設計網站（reasondesign.com.tw）的 SEO 導入過程，包含每週執行報告、關鍵字策略與技術優化紀錄。
+    </p>
+  </div>
+
+  <div class="status-row">
+    <div class="status-item"><strong>執行起始</strong>2026 年 6 月</div>
+    <div class="status-item"><strong>目標網站</strong>reasondesign.com.tw</div>
+    <div class="status-item"><strong>核心目標</strong>台中室內設計 前三名</div>
+    <div class="status-item"><strong>執行單位</strong>Readie AI（Marco Liu）</div>
+  </div>
+
+  <div class="section-label">策略文件</div>
+  <div class="cards" style="margin-bottom:2rem;">
+    <a class="card" href="rushan_seo_briefing.html">
+      <div class="card-badge badge-done">提案<br>文件</div>
+      <div class="card-body">
+        <div class="card-meta">2026.06 · SEO / AEO 導入提案</div>
+        <div class="card-title">若善設計 SEO 導入提案</div>
+        <div class="card-desc">現況診斷、10 組關鍵字架構、首頁文案改版、Schema 技術結構、四週執行計畫。</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="section-label">執行報告</div>
+  <div class="cards">
+    <a class="card" href="rushan_seo_report_week1.html">
+      <div class="card-badge badge-done">W1<br>完成</div>
+      <div class="card-body">
+        <div class="card-meta">2026.06.13–14 · Week 1 執行報告</div>
+        <div class="card-title">Week 1：SEO 基礎建設完成</div>
+        <div class="card-desc">安裝 Rank Math、Title Tag 改版、Meta Description 設定、LocalBusiness Schema、H1 修正。SEO 分數 18 → 66。附網域 301 轉址建議。</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <div class="card" style="cursor:default; opacity:.6;">
+      <div class="card-badge badge-next">W2<br>進行中</div>
+      <div class="card-body">
+        <div class="card-meta">Week 2 · 預計 2026.06 下旬</div>
+        <div class="card-title">Week 2：首頁內容建設 + FAQ Schema</div>
+        <div class="card-desc">品牌介紹段落（待業主確認）、FAQ 區塊 + FAQPage Schema JSON-LD、網域 301 轉址執行。</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card" style="cursor:default; opacity:.5;">
+      <div class="card-badge badge-plan">W3<br>計畫</div>
+      <div class="card-body">
+        <div class="card-meta">Week 3 · 預計 2026.07</div>
+        <div class="card-title">Week 3：預售屋客變獨立服務頁 ★</div>
+        <div class="card-desc">建立 /services/pre-sale 頁面，含服務說明、流程、FAQ、Service Schema。預估 1–3 個月內進關鍵字前五名。</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card" style="cursor:default; opacity:.5;">
+      <div class="card-badge badge-plan">W4<br>計畫</div>
+      <div class="card-body">
+        <div class="card-meta">Week 4 · 預計 2026.07</div>
+        <div class="card-title">Week 4：圖片 Alt + Google Business Profile</div>
+        <div class="card-desc">作品集圖片補 Alt 屬性、Google Business Profile 完整填寫、分類設定為室內設計師。</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>若善設計 × SEO 進度報告 · Readie AI（Marco Liu）</p>
+  <p style="margin-top:.3rem;">reasondesign.com.tw · 2026</p>
+</footer>
+
+</body>
+</html>
