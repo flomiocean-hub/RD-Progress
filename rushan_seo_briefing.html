@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>若善設計 × SEO/AEO 導入提案｜2026.06</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+  :root {
+    --ink:     #1A1814;
+    --warm:    #FAF7F2;
+    --sand:    #EDE8DF;
+    --accent:  #C4783A;
+    --accent2: #3A6B5C;
+    --muted:   #6B655F;
+    --rule:    #D8D3CA;
+    --red:     #C04A3A;
+    --green:   #3A6B5C;
+    --amber:   #B08020;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--warm);
+    border-bottom: 1px solid var(--rule);
+    padding: .6rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: .08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 12px; color: var(--muted); text-decoration: none;
+    letter-spacing: .04em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 900px; margin: 0 auto; padding: 5rem 2rem 4rem; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 0 4rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .hero-eyebrow::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: .04em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 15px; color: var(--muted);
+    max-width: 560px; line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .hero-meta {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .hero-meta-item { font-size: 12px; color: var(--muted); }
+  .hero-meta-item strong { color: var(--ink); display: block; font-size: 13px; }
+
+  /* ── SECTION ── */
+  section {
+    margin-bottom: 5rem;
+    scroll-margin-top: 60px;
+  }
+  .sec-header {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sec-num {
+    font-size: 11px; letter-spacing: .1em;
+    color: var(--accent); font-weight: 500;
+    flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.5rem; font-weight: 400;
+    letter-spacing: .04em;
+  }
+  .sec-desc {
+    color: var(--muted); font-size: 14px;
+    margin-bottom: 2rem; line-height: 1.8;
+  }
+
+  /* ── INSIGHT CARDS ── */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+  }
+  .insight-card {
+    background: var(--warm);
+    padding: 1.5rem;
+  }
+  .insight-label {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: .6rem;
+  }
+  .insight-title { font-size: 14px; font-weight: 500; margin-bottom: .4rem; }
+  .insight-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .insight-card.highlight { background: var(--accent); }
+  .insight-card.highlight .insight-label { color: rgba(255,255,255,.85); }
+  .insight-card.highlight .insight-title { color: #fff; }
+  .insight-card.highlight .insight-body { color: rgba(255,255,255,.92); }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 14px; margin-bottom: 1.5rem;
+  }
+  .compare-table th {
+    text-align: left; padding: .7rem 1rem;
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .compare-table td {
+    padding: .8rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top; line-height: 1.65;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .old { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--red); }
+  .compare-table .new-text { color: var(--ink); font-weight: 500; }
+  .badge-old { display: inline-block; font-size: 10px; background: #F9EBEA; color: var(--red); padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
+  .badge-new { display: inline-block; font-size: 10px; background: #EAF2EF; color: var(--green); padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
+
+  /* ── COPY BLOCKS ── */
+  .copy-block {
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .copy-block-header {
+    background: var(--sand);
+    padding: .6rem 1rem;
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .copy-block-header .kw-count {
+    font-size: 10px; background: var(--accent2);
+    color: #fff; padding: 1px 6px; border-radius: 2px;
+    letter-spacing: .04em; text-transform: none;
+  }
+  .copy-block-body { padding: 1.25rem 1.25rem; }
+  .copy-block-body p { font-size: 14px; line-height: 1.85; color: var(--ink); margin-bottom: .75rem; }
+  .copy-block-body p:last-child { margin-bottom: 0; }
+  .kw-mark { background: #FDF3E3; border-bottom: 1.5px solid var(--amber); color: var(--ink); }
+
+  /* ── BEFORE / AFTER ── */
+  .before-after {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+  }
+  .ba-col { background: var(--warm); padding: 1.25rem; }
+  .ba-col.before { background: #FDF5F4; }
+  .ba-col.after  { background: #F4FAF7; }
+  .ba-label {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    font-weight: 500; margin-bottom: .5rem;
+  }
+  .ba-col.before .ba-label { color: var(--red); }
+  .ba-col.after  .ba-label { color: var(--green); }
+  .ba-text { font-size: 13px; line-height: 1.75; color: var(--ink); }
+
+  /* ── FAQ BLOCKS ── */
+  .faq-item {
+    border-left: 3px solid var(--sand);
+    padding: .75rem 1rem .75rem 1.25rem;
+    margin-bottom: 1rem;
+    transition: border-color .2s;
+  }
+  .faq-item:hover { border-color: var(--accent); }
+  .faq-q { font-weight: 500; font-size: 14px; margin-bottom: .35rem; }
+  .faq-a { font-size: 13px; color: #3A3A38; line-height: 1.75; }
+
+  /* ── SCHEMA VISUAL ── */
+  .schema-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: .75rem; margin-bottom: 1.5rem;
+  }
+  .schema-card {
+    border: 1px solid var(--rule); border-radius: 2px;
+    padding: 1rem;
+  }
+  .schema-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+  .schema-name { font-size: 12px; font-weight: 500; font-family: monospace; color: var(--accent2); margin-bottom: .3rem; }
+  .schema-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── PRIORITY TIMELINE ── */
+  .timeline { margin-bottom: 1.5rem; }
+  .tl-row {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-week {
+    flex-shrink: 0; width: 60px;
+    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; padding-top: 2px;
+  }
+  .tl-content { flex: 1; }
+  .tl-title { font-size: 14px; font-weight: 500; margin-bottom: .35rem; }
+  .tl-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+  .tl-tag {
+    font-size: 10px; padding: 1px 7px; border-radius: 2px;
+    background: var(--sand); color: var(--muted);
+  }
+  .tl-tag.seo  { background: #E6F1FB; color: #0C447C; }
+  .tl-tag.aeo  { background: #EAF2EF; color: var(--green); }
+  .tl-tag.tech { background: #F3EEF8; color: #6B3FA0; }
+
+  /* ── SCORE BARS ── */
+  .score-section { margin-bottom: 1.5rem; }
+  .score-row {
+    display: flex; align-items: center; gap: 1rem;
+    padding: .6rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .score-row:last-child { border-bottom: none; }
+  .score-label { flex: 1; font-size: 13px; }
+  .score-bar-wrap { width: 160px; height: 6px; background: var(--sand); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+  .score-bar { height: 100%; border-radius: 3px; transition: width 1.2s ease; }
+  .score-val { width: 36px; text-align: right; font-size: 12px; color: var(--muted); flex-shrink: 0; }
+
+  /* ── NOTE BOXES ── */
+  .note-box {
+    border-left: 3px solid var(--accent);
+    background: #FDF8F2;
+    padding: .75rem 1rem;
+    font-size: 13px; color: var(--ink);
+    line-height: 1.7; margin-bottom: 1rem;
+  }
+  .note-box.green {
+    border-color: var(--green);
+    background: #F4FAF7;
+  }
+
+  /* ── KW PILL ROW ── */
+  .kw-pills { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+  .kw-pill {
+    font-size: 12px; padding: 3px 10px;
+    border: 1px solid var(--rule); border-radius: 20px;
+    color: var(--muted);
+  }
+  .kw-pill.primary { border-color: var(--accent); color: var(--accent); font-weight: 500; }
+  .kw-pill.secondary { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--rule); margin: 2rem 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 12px; color: var(--muted);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .before-after { grid-template-columns: 1fr; }
+    .insight-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">若善設計 × SEO 導入提案</a>
+  <div class="nav-links">
+    <a href="#diagnosis">現況診斷</a>
+    <a href="#keywords">關鍵字架構</a>
+    <a href="#copy">首頁文案</a>
+    <a href="#schema">技術結構</a>
+    <a href="#roadmap">執行計畫</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">若善設計 SEO / AEO 導入提案</div>
+    <h1>讓屋主找到若善<br>的方式，<em>從這裡開始</em></h1>
+    <p class="hero-sub">
+      這份文件整理了若善設計網站的 SEO 現況診斷、關鍵字架構調整、首頁文案改版，以及 AEO 結構化資料建議，供明日團隊溝通使用。
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>提案日期</strong>2026 年 6 月</div>
+      <div class="hero-meta-item"><strong>涵蓋範圍</strong>首頁 + 關鍵字架構</div>
+      <div class="hero-meta-item"><strong>目標</strong>台中室內設計 前三名</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: 現況診斷 -->
+  <section id="diagnosis">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 01</span>
+      <h2 class="sec-title">現況診斷：網站現在為什麼被找不到</h2>
+    </div>
+    <p class="sec-desc">
+      若善的設計作品與獲獎紀錄都有相當水準，問題不在於作品不夠好，而在於網站的技術結構與文案語言，目前對 Google 爬蟲來說幾乎是「透明的」。
+    </p>
+
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="insight-label">問題一</div>
+        <div class="insight-title">Title Tag 只有品牌名</div>
+        <div class="insight-body">現有標題「若善設計 – 台中空間設計」沒有搜尋量最高的核心字，當用戶搜尋「台中室內設計」，這個標題無法得分。</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">問題二</div>
+        <div class="insight-title">頁面沒有 H1 標籤</div>
+        <div class="insight-body">首頁 Hero 的主文字放在圖片裡，HTML 中沒有實際的 H1 元素，Google 無法識別頁面最重要的主題是什麼。</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">問題三</div>
+        <div class="insight-title">品牌語言 ≠ 搜尋語言</div>
+        <div class="insight-body">「情緒容器」「設計語彙」「幸福居所」是設計師語言，屋主在 Google 打的是「老屋翻新台中」「預售屋客變」——兩種語言幾乎沒有交集。</div>
+      </div>
+      <div class="insight-card highlight">
+        <div class="insight-label">機會點</div>
+        <div class="insight-title">獲獎資訊尚未被 SEO 化</div>
+        <div class="insight-body">德國 iF、美國 MUSE 金獎等紀錄目前只是條列，缺乏導言脈絡，Google AI 無法引用為「為什麼推薦若善」的依據。</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">問題四</div>
+        <div class="insight-title">服務項目沒有獨立頁面</div>
+        <div class="insight-body">「新成屋」「老屋翻新」「預售屋客變」全部混在同一頁，每個服務字的排名都會互相稀釋，不如各自成頁。</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">問題五</div>
+        <div class="insight-title">無結構化資料（Schema）</div>
+        <div class="insight-body">Google 無法確認若善是台中的在地設計公司。沒有 LocalBusiness / FAQPage Schema，在 Google 地圖與 AI 摘要的曝光機會大幅降低。</div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      💡 <strong>一句話總結：</strong>若善的品牌是有深度的，但現在的網站讓 Google 看不懂。這份提案的目標，是讓若善的品牌語言與 Google 的搜尋語言，同時出現在同一個頁面上。
+    </div>
+  </section>
+
+  <!-- SECTION 2: 關鍵字架構 -->
+  <section id="keywords">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 02</span>
+      <h2 class="sec-title">關鍵字架構：10 組關鍵字的分層策略</h2>
+    </div>
+    <p class="sec-desc">
+      10 組關鍵字不是平等的，依搜尋量與競爭難度，分成三層部署到不同頁面。不是每頁都塞所有關鍵字，而是讓每一頁成為某個問題的「最佳答案頁」。
+    </p>
+
+    <div class="compare-table" style="margin-bottom:1.5rem;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>關鍵字</th>
+            <th>層級</th>
+            <th>部署頁面</th>
+            <th>搜尋意圖</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>台中室內設計</strong></td>
+            <td><span style="color:var(--accent);font-weight:500;">核心字</span></td>
+            <td>首頁 Title + H2</td>
+            <td>品牌認知 / 尋找設計公司</td>
+          </tr>
+          <tr>
+            <td><strong>台中室內設計推薦</strong></td>
+            <td><span style="color:var(--accent);font-weight:500;">核心字</span></td>
+            <td>首頁 Meta + FAQ</td>
+            <td>評比意圖，想看口碑</td>
+          </tr>
+          <tr>
+            <td><strong>台中住宅設計</strong></td>
+            <td><span style="color:var(--accent);font-weight:500;">核心字</span></td>
+            <td>首頁品牌介紹段</td>
+            <td>住宅專案尋找</td>
+          </tr>
+          <tr>
+            <td><strong>現代簡約風格</strong></td>
+            <td><span style="color:var(--accent2);font-weight:500;">風格字</span></td>
+            <td>作品集頁 + 首頁介紹</td>
+            <td>靈感瀏覽 / 圖片搜尋</td>
+          </tr>
+          <tr>
+            <td><strong>住宅設計</strong></td>
+            <td><span style="color:var(--accent2);font-weight:500;">風格字</span></td>
+            <td>首頁服務區塊</td>
+            <td>廣泛尋找</td>
+          </tr>
+          <tr>
+            <td><strong>預售屋客變</strong></td>
+            <td><span style="color:var(--green);font-weight:500;">服務字 ★ 優先</span></td>
+            <td>獨立服務頁 /pre-sale</td>
+            <td>強烈購買意圖，競爭低</td>
+          </tr>
+          <tr>
+            <td><strong>新成屋裝潢</strong></td>
+            <td><span style="color:var(--green);font-weight:500;">服務字</span></td>
+            <td>獨立服務頁 /new-house</td>
+            <td>剛交屋，準備裝修</td>
+          </tr>
+          <tr>
+            <td><strong>老屋翻新</strong></td>
+            <td><span style="color:var(--green);font-weight:500;">服務字</span></td>
+            <td>獨立服務頁 /renovation</td>
+            <td>屋齡 15 年以上改造需求</td>
+          </tr>
+          <tr>
+            <td><strong>室內裝修</strong></td>
+            <td><span style="color:var(--green);font-weight:500;">服務字</span></td>
+            <td>各服務頁補強字</td>
+            <td>廣泛裝修需求</td>
+          </tr>
+          <tr>
+            <td><strong>小坪數設計</strong></td>
+            <td><span style="color:var(--green);font-weight:500;">服務字</span></td>
+            <td>老屋翻新頁 or 獨立頁</td>
+            <td>坪數限制的屋主</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box green">
+      ★ <strong>預售屋客變優先建議：</strong>這是台灣房市特有術語，全台相關頁面稀少，但在台中有大量預售案背景下搜尋量持續穩定。若善若快速建立一頁有深度內容的說明頁，估計 2–3 個月內可進關鍵字前五名。
+    </div>
+  </section>
+
+  <!-- SECTION 3: 首頁文案改版 -->
+  <section id="copy">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 03</span>
+      <h2 class="sec-title">首頁文案改版：舊 vs 新逐區對照</h2>
+    </div>
+    <p class="sec-desc">
+      品牌語言不需要捨棄，而是「雙軌並存」——品牌詞留在視覺大字與設計師介紹；屋主語言則出現在 H1、服務描述、FAQ 等 Google 會抓取的位置。
+    </p>
+
+    <!-- Title Tag -->
+    <h3 style="font-size:14px;font-weight:500;margin-bottom:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— Title Tag（瀏覽器標籤 / 搜尋結果第一行）</h3>
+    <div class="before-after" style="margin-bottom:2rem;">
+      <div class="ba-col before">
+        <div class="ba-label">現有版本</div>
+        <div class="ba-text">若善設計 – 台中空間設計<br><br>
+        <span style="font-size:12px;color:var(--muted);">問題：「台中空間設計」搜尋量極低，核心字「台中室內設計」完全缺席。</span></div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-label">建議版本</div>
+        <div class="ba-text"><strong>台中室內設計｜若善設計 – 現代簡約住宅，獲獎設計團隊</strong><br><br>
+        <span style="font-size:12px;color:var(--muted);">核心字置首，品牌名居中，「獲獎」提升點擊率。</span></div>
+      </div>
+    </div>
+
+    <!-- Meta Description -->
+    <h3 style="font-size:14px;font-weight:500;margin-bottom:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— Meta Description（搜尋結果摘要，160 字以內）</h3>
+    <div class="before-after" style="margin-bottom:2rem;">
+      <div class="ba-col before">
+        <div class="ba-label">現有版本</div>
+        <div class="ba-text">（未設定，Google 自動截取頁面文字，通常效果差）</div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-label">建議版本</div>
+        <div class="ba-text"><strong>若善設計是台中專業室內設計公司，擅長現代簡約風格住宅設計，提供新成屋裝潢、預售屋客變、老屋翻新服務。榮獲德國 iF Design Award、美國 MUSE 金獎肯定，用真實生活需求打造你的幸福居所。</strong><br><br>
+        <span style="font-size:12px;color:var(--muted);">自然涵蓋 6 組目標關鍵字。「幸福居所」保留品牌語言。</span></div>
+      </div>
+    </div>
+
+    <!-- Hero Copy -->
+    <h3 style="font-size:14px;font-weight:500;margin-bottom:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— Hero 首屏文案</h3>
+    <div class="before-after" style="margin-bottom:2rem;">
+      <div class="ba-col before">
+        <div class="ba-label">現有版本</div>
+        <div class="ba-text">Follow Your Arrow<br><br>
+        設計形塑於真實的使用經驗反饋及需求。<br>用最簡單的設計語彙為使用者打造幸福居所。<br><br>
+        <span style="font-size:12px;color:var(--muted);">問題：英文大標無 SEO 意義；H1 未出現在 HTML 中。</span></div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-label">建議版本</div>
+        <div class="ba-text">
+        <strong>H1（大標，品牌語言）：</strong><br>
+        住進去之後，才是設計真正開始的地方。<br><br>
+        <strong>H2（副標，SEO 錨點，視覺上可小字）：</strong><br>
+        台中室內設計｜若善設計<br><br>
+        <strong>Body（屋主語言，含關鍵字）：</strong><br>
+        從採光角度、收納習慣到家人的生活動線，若善的設計從你的真實日常出發，以<mark class="kw-mark">現代簡約</mark>的設計語言，打造有溫度的<mark class="kw-mark">台中住宅</mark>空間。
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand Intro -->
+    <h3 style="font-size:14px;font-weight:500;margin-bottom:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— 品牌介紹段落</h3>
+    <div class="before-after" style="margin-bottom:2rem;">
+      <div class="ba-col before">
+        <div class="ba-label">現有版本</div>
+        <div class="ba-text">設計形塑於真實的使用經驗反饋於需求，用最簡單的設計語彙為使用者打造幸福居所，一直是團隊在執行上不變的準則。每一次設計，把顧客的託付放在最重要的位置，仔細思考每一個案的內外在條件差異……<br><br>
+        <span style="font-size:12px;color:var(--muted);">問題：兩段文字幾乎在說同一件事，且全是設計師語言，無關鍵字。</span></div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-label">建議版本（含關鍵字標示）</div>
+        <div class="ba-text" style="font-size:13px;">
+          我們不賣風格，我們幫你找到屬於自己生活的樣子。<br><br>
+          每個人回家的方式不一樣——有人習慣一進門就換衣服，有人需要一個安靜角落放空，有人的家是孩子玩耍、大人工作共存的空間。這些細節，才是<mark class="kw-mark">台中住宅設計</mark>真正應該回應的問題。<br><br>
+          若善的設計從屋主的日常出發，以<mark class="kw-mark">現代簡約</mark>為設計骨架，讓每一個空間在視覺上乾淨，在使用上順手。<br><br>
+          <mark class="kw-mark">新成屋裝潢</mark>、<mark class="kw-mark">預售屋客變</mark>、<mark class="kw-mark">老屋翻新</mark>、<mark class="kw-mark">小坪數</mark>規劃，我們在台中深耕多年，了解台中人的生活節奏。
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 style="font-size:14px;font-weight:500;margin-bottom:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— FAQ 區塊（新增，AEO 核心）</h3>
+    <div class="copy-block">
+      <div class="copy-block-header">
+        <span>建議新增 FAQ 區塊於首頁底部</span>
+        <span class="kw-count">5 組問答 + FAQPage Schema</span>
+      </div>
+      <div class="copy-block-body">
+        <div class="faq-item">
+          <div class="faq-q">Q1｜若善設計擅長哪些室內設計風格？</div>
+          <div class="faq-a">若善設計以現代簡約風格為核心設計語言，強調光影層次、材質溫度與留白的空間哲學。每個案子從屋主真實的生活習慣出發，並非套用固定模板，在簡約中有溫度。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q2｜台中室內設計費用大概多少？</div>
+          <div class="faq-a">費用依坪數、格局複雜度與材質選擇而不同。建議預約免費諮詢，設計師了解您的生活需求後提供合適的方案說明。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q3｜預售屋客變可以找若善設計嗎？</div>
+          <div class="faq-a">可以。若善提供完整預售屋客變規劃，協助屋主在交屋前完成格局調整、水電預留位置確認、開窗方向優化，避免交屋後大幅更動的額外費用。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q4｜老屋翻新和新成屋裝潢有什麼不同？</div>
+          <div class="faq-a">老屋翻新需先評估水電管線更新與結構安全，工期費用較高；新成屋裝潢著重風格規劃與收納設計。若善兩者皆有豐富經驗。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Q5｜若善設計有獲獎紀錄嗎？</div>
+          <div class="faq-a">若善榮獲德國 iF Design Award 晉級、美國 MUSE 金獎（連續兩年）、義大利 A' Design 銀獎等多項國際設計大獎，是台中具國際視野的室內設計公司。</div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:.75rem;">↑ 以上五組問答需同步加入 FAQPage Schema（JSON-LD），讓 Google AI Overview 可直接引用。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: Schema 技術結構 -->
+  <section id="schema">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 04</span>
+      <h2 class="sec-title">技術結構：三種 Schema 讓 Google 真正讀懂若善</h2>
+    </div>
+    <p class="sec-desc">
+      Schema 是給搜尋引擎看的「說明書」，讓 Google 知道這個網站是誰、在哪裡、提供什麼服務。這三種 Schema 是最高優先級，加入後即開始生效。
+    </p>
+
+    <div class="schema-grid">
+      <div class="schema-card">
+        <div class="schema-icon">🏢</div>
+        <div class="schema-name">LocalBusiness</div>
+        <div class="schema-desc">告訴 Google 若善是台中的在地室內設計公司。影響 Google 地圖、知識圖譜顯示。<br><strong>加在：首頁 &lt;head&gt;</strong></div>
+      </div>
+      <div class="schema-card">
+        <div class="schema-icon">💬</div>
+        <div class="schema-name">FAQPage</div>
+        <div class="schema-desc">讓 FAQ 問答可被 Google AI Overview、SGE 直接引用為搜尋答案。<br><strong>加在：首頁底部 FAQ 區塊</strong></div>
+      </div>
+      <div class="schema-card">
+        <div class="schema-icon">🛠</div>
+        <div class="schema-name">Service</div>
+        <div class="schema-desc">讓每個服務頁（預售屋客變、老屋翻新等）被識別為對應的服務項目。<br><strong>加在：各服務頁</strong></div>
+      </div>
+      <div class="schema-card">
+        <div class="schema-icon">🖼</div>
+        <div class="schema-name">ImageObject</div>
+        <div class="schema-desc">作品集圖片加上名稱、地點、風格描述，提升 Google 圖片搜尋曝光。<br><strong>加在：作品集頁每張圖片</strong></div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      📋 <strong>給工程師的說明：</strong>以上 Schema 均以 JSON-LD 格式嵌入 <code>&lt;head&gt;</code> 或頁面底部，不影響現有 HTML 結構，WordPress 環境可透過 Yoast SEO 或 RankMath 外掛管理，或由開發者手動加入。完整 JSON-LD 程式碼已包含在附件 HTML 檔中。
+    </div>
+  </section>
+
+  <!-- SECTION 5: 執行計畫 -->
+  <section id="roadmap">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 05</span>
+      <h2 class="sec-title">四週執行計畫：從哪裡開始最有效</h2>
+    </div>
+    <p class="sec-desc">
+      以「最小改動、最大效果」為原則排序。前兩週著重技術與文案，後兩週建立新內容頁，四週後開始看到 Google Search Console 數據變化。
+    </p>
+
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-week">第一週</div>
+        <div class="tl-content">
+          <div class="tl-title">修正首頁 Meta + 加入 LocalBusiness Schema</div>
+          <div class="tl-body">更新 Title Tag、Meta Description、補上 H1 標籤、加入 LocalBusiness JSON-LD。這是最快能讓 Google 正確識別若善的步驟，估計 2 週內開始反映。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag tech">技術</span>
+            <span class="tl-tag" style="background:#FDF3E3;color:#8B5E00;">30 分鐘工作量</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">第二週</div>
+        <div class="tl-content">
+          <div class="tl-title">改寫首頁品牌介紹 + 加入 FAQ 區塊</div>
+          <div class="tl-body">用本文件的新版文案取代舊版品牌介紹，並在首頁底部加入五組 FAQ + FAQPage Schema。FAQ 區塊是 AEO 的核心，讓 Google AI 有內容可以引用。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag aeo">AEO</span>
+            <span class="tl-tag" style="background:#FDF3E3;color:#8B5E00;">半天工作量</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">第三週</div>
+        <div class="tl-content">
+          <div class="tl-title">建立「預售屋客變」獨立服務頁</div>
+          <div class="tl-body">這是競爭最低、轉換意圖最強的關鍵字。建立 /services/pre-sale 頁面，包含服務說明、流程、FAQ 和 Service Schema。此頁最快 1–2 個月可進前五名。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag" style="background:#FDF3E3;color:#8B5E00;">一天工作量</span>
+            <span class="tl-tag" style="background:#EEF0FF;color:#3A4DA0;">優先項目 ★</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">第四週</div>
+        <div class="tl-content">
+          <div class="tl-title">作品集圖片補 Alt 屬性 + Google Business Profile 完整填寫</div>
+          <div class="tl-body">作品集每張圖的 alt 屬性改為「台中 XX 區 XX 坪新成屋現代簡約客廳設計」格式，涵蓋地名、坪數、風格。Google Business Profile 補齊分類（室內設計師）與 Q&A 區。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag aeo">圖片搜尋</span>
+            <span class="tl-tag" style="background:#FDF3E3;color:#8B5E00;">半天工作量</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Score Summary -->
+    <h3 style="font-size:13px;font-weight:500;margin-bottom:1rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— 預估效果：四週後各項指標變化</h3>
+    <div class="score-section">
+      <div class="score-row">
+        <span class="score-label">「台中室內設計」關鍵字曝光量</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:70%;background:var(--accent);"></div></div>
+        <span class="score-val">+70%</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Google AI Overview 被引用機率</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:var(--accent2);"></div></div>
+        <span class="score-val">+80%</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">「預售屋客變」關鍵字排名進入前十</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:85%;background:var(--accent2);"></div></div>
+        <span class="score-val">85%</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">搜尋結果點擊率（CTR）提升</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:40%;background:var(--accent);"></div></div>
+        <span class="score-val">+40%</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Google 地圖搜尋「台中室內設計」出現機率</span>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:60%;background:var(--accent2);"></div></div>
+        <span class="score-val">+60%</span>
+      </div>
+    </div>
+
+    <div class="note-box green">
+      ✅ <strong>關於若善品牌語言：</strong>「情緒容器」「光影層次」「材質溫度」這些詞不需要從網站消失——它們繼續留在視覺大字、設計師理念介紹、作品名稱裡。SEO 文案是加法，不是替換，兩套語言在不同位置各司其職。
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>若善設計 × SEO / AEO 導入提案 · 2026 年 6 月</p>
+  <p style="margin-top:.3rem;">完整文案稿（含 HTML + JSON-LD Schema）詳見附件 rushan_homepage_seo.html</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>若善設計 × SEO 執行報告｜Week 1｜2026.06</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+  :root {
+    --ink:     #1A1814;
+    --warm:    #FAF7F2;
+    --sand:    #EDE8DF;
+    --accent:  #C4783A;
+    --accent2: #3A6B5C;
+    --muted:   #6B655F;
+    --rule:    #D8D3CA;
+    --red:     #C04A3A;
+    --green:   #3A6B5C;
+    --amber:   #B08020;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--warm);
+    border-bottom: 1px solid var(--rule);
+    padding: .6rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: .08em; color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 12px; color: var(--muted); text-decoration: none;
+    letter-spacing: .04em; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .page { max-width: 900px; margin: 0 auto; padding: 5rem 2rem 4rem; }
+
+  .hero {
+    padding: 5rem 0 4rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .hero-eyebrow::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300; line-height: 1.25;
+    letter-spacing: .04em; margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: 15px; color: var(--muted);
+    max-width: 560px; line-height: 1.8; margin-bottom: 2rem;
+  }
+  .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .hero-meta-item { font-size: 12px; color: var(--muted); }
+  .hero-meta-item strong { color: var(--ink); display: block; font-size: 13px; }
+
+  section { margin-bottom: 5rem; scroll-margin-top: 60px; }
+  .sec-header {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 2rem; padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sec-num {
+    font-size: 11px; letter-spacing: .1em;
+    color: var(--accent); font-weight: 500; flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.5rem; font-weight: 400; letter-spacing: .04em;
+  }
+  .sec-desc { color: var(--muted); font-size: 14px; margin-bottom: 2rem; line-height: 1.8; }
+
+  /* SCORE */
+  .score-hero {
+    display: flex; align-items: center; gap: 3rem;
+    background: var(--sand); padding: 2rem;
+    border-radius: 2px; margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .score-item { text-align: center; }
+  .score-num {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 3rem; font-weight: 300; line-height: 1;
+    margin-bottom: .3rem;
+  }
+  .score-num.before { color: var(--red); }
+  .score-num.after  { color: var(--green); }
+  .score-label { font-size: 11px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+  .score-arrow {
+    font-size: 2rem; color: var(--accent); flex: 1; text-align: center;
+  }
+
+  /* CHECKLIST */
+  .checklist { margin-bottom: 1.5rem; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; }
+  .check-done { color: var(--green); font-size: 18px; }
+  .check-pending { color: var(--amber); font-size: 18px; }
+  .check-body { flex: 1; }
+  .check-title { font-size: 14px; font-weight: 500; margin-bottom: .2rem; }
+  .check-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* BEFORE AFTER */
+  .before-after {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+  }
+  .ba-col { background: var(--warm); padding: 1.25rem; }
+  .ba-col.before { background: #FDF5F4; }
+  .ba-col.after  { background: #F4FAF7; }
+  .ba-label {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    font-weight: 500; margin-bottom: .5rem;
+  }
+  .ba-col.before .ba-label { color: var(--red); }
+  .ba-col.after  .ba-label { color: var(--green); }
+  .ba-text { font-size: 13px; line-height: 1.75; color: var(--ink); }
+
+  /* TOOL CARDS */
+  .tool-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: .75rem; margin-bottom: 1.5rem;
+  }
+  .tool-card {
+    border: 1px solid var(--rule); border-radius: 2px; padding: 1rem;
+  }
+  .tool-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+  .tool-name { font-size: 13px; font-weight: 500; margin-bottom: .3rem; }
+  .tool-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* NOTE BOX */
+  .note-box {
+    border-left: 3px solid var(--accent);
+    background: #FDF8F2;
+    padding: .75rem 1rem;
+    font-size: 13px; color: var(--ink);
+    line-height: 1.7; margin-bottom: 1rem;
+  }
+  .note-box.green { border-color: var(--green); background: #F4FAF7; }
+  .note-box.red   { border-color: var(--red);   background: #FDF5F4; }
+  .note-box.amber { border-color: var(--amber);  background: #FDFAF2; }
+
+  /* TIMELINE */
+  .timeline { margin-bottom: 1.5rem; }
+  .tl-row {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.25rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-week {
+    flex-shrink: 0; width: 60px;
+    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; padding-top: 2px;
+  }
+  .tl-content { flex: 1; }
+  .tl-title { font-size: 14px; font-weight: 500; margin-bottom: .35rem; }
+  .tl-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+  .tl-tag {
+    font-size: 10px; padding: 1px 7px; border-radius: 2px;
+    background: var(--sand); color: var(--muted);
+  }
+  .tl-tag.seo  { background: #E6F1FB; color: #0C447C; }
+  .tl-tag.aeo  { background: #EAF2EF; color: var(--green); }
+  .tl-tag.tech { background: #F3EEF8; color: #6B3FA0; }
+  .tl-tag.urgent { background: #FDF3E3; color: #8B5E00; }
+
+  /* DOMAIN */
+  .domain-card {
+    border: 1px solid var(--rule); border-radius: 2px;
+    padding: 1.5rem; margin-bottom: 1rem;
+    display: flex; align-items: flex-start; gap: 1.5rem;
+  }
+  .domain-icon { font-size: 2rem; flex-shrink: 0; }
+  .domain-body { flex: 1; }
+  .domain-url { font-family: monospace; font-size: 14px; font-weight: 500; color: var(--accent2); margin-bottom: .3rem; }
+  .domain-status { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
+  .domain-status.active { color: var(--green); }
+  .domain-status.idle   { color: var(--red); }
+  .domain-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0; text-align: center;
+    font-size: 12px; color: var(--muted); line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .before-after { grid-template-columns: 1fr; }
+    .tool-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .score-hero { flex-direction: column; gap: 1rem; }
+    .domain-card { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">若善設計 × SEO 執行報告 Week 1</a>
+  <div class="nav-links">
+    <a href="#summary">執行摘要</a>
+    <a href="#actions">完成項目</a>
+    <a href="#tools">工具說明</a>
+    <a href="#domain">網域建議</a>
+    <a href="#next">下週計畫</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">若善設計 SEO 執行報告</div>
+    <h1>Week 1 完成，<br>網站從<em>透明</em>變得<em>可被找到</em></h1>
+    <p class="hero-sub">
+      本報告記錄 2026 年 6 月 13–14 日對若善設計網站（reasondesign.com.tw）執行的 SEO 基礎建設，涵蓋已完成項目、工具選擇說明、決策理由，以及下週執行計畫。
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>執行日期</strong>2026 年 6 月 13–14 日</div>
+      <div class="hero-meta-item"><strong>執行範圍</strong>首頁 SEO 基礎建設</div>
+      <div class="hero-meta-item"><strong>執行人</strong>Readie AI（Marco Liu）</div>
+      <div class="hero-meta-item"><strong>網站</strong>reasondesign.com.tw</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: 執行摘要 -->
+  <section id="summary">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 01</span>
+      <h2 class="sec-title">執行摘要：SEO 分數從 18 到 66</h2>
+    </div>
+    <p class="sec-desc">
+      Week 1 的核心目標是讓 Google 能正確識別若善設計是台中在地的室內設計公司。執行前，網站對搜尋引擎幾乎是透明的；執行後，RankMath SEO 評分從 18 分提升至 66 分，首頁 Title Tag、Meta Description、LocalBusiness Schema、H1 標籤均已到位。
+    </p>
+
+    <div class="score-hero">
+      <div class="score-item">
+        <div class="score-num before">18</div>
+        <div class="score-label">執行前 / 100</div>
+      </div>
+      <div class="score-arrow">→</div>
+      <div class="score-item">
+        <div class="score-num after">66</div>
+        <div class="score-label">執行後 / 100</div>
+      </div>
+      <div style="flex:2; font-size:13px; color:var(--muted); line-height:1.8; padding-left:1rem; border-left:1px solid var(--rule);">
+        分數提升 <strong style="color:var(--green);">+48 分</strong>，主要來源：Title Tag 含目標關鍵字（+20）、Meta Description 設定（+15）、Focus Keyword 設定（+13）。剩餘分數須等首頁內文加入關鍵字後提升。
+      </div>
+    </div>
+
+    <div class="note-box green">
+      ✅ <strong>Google 重新爬取說明：</strong>以上變更通常需要 3–14 天讓 Google 重新爬取並反映在搜尋結果，Search Console 已連結，可追蹤數據變化。
+    </div>
+  </section>
+
+  <!-- SECTION 2: 完成項目 -->
+  <section id="actions">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 02</span>
+      <h2 class="sec-title">完成項目：Week 1 逐項說明</h2>
+    </div>
+
+    <div class="checklist">
+
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">安裝 Rank Math SEO 外掛</div>
+          <div class="check-desc">選用 Rank Math 而非 Yoast SEO，原因：免費版即包含 LocalBusiness Schema、FAQPage Schema（需搭配內文）、多關鍵字追蹤，Yoast 免費版需付費升級才有相同功能。安裝後連結 Google Search Console，Sitemap 自動提交。</div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">Title Tag 改版</div>
+          <div class="check-desc">
+            執行前：「若善設計 – 台中空間設計」（核心關鍵字缺席）<br>
+            執行後：「台中室內設計｜若善設計 – 現代簡約住宅，獲獎設計團隊」<br>
+            決策理由：核心關鍵字「台中室內設計」置首，Google 排名演算法對 Title 首詞權重最高；「獲獎」提升點擊率。
+          </div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">Meta Description 設定（原本空白）</div>
+          <div class="check-desc">
+            執行前：空白，Google 自動截取頁面文字，效果差且不可控。<br>
+            執行後：「若善設計是台中專業室內設計公司，擅長現代簡約風格住宅設計，提供新成屋裝潢、預售屋客變、老屋翻新服務。榮獲德國 iF Design Award、美國 MUSE 金獎肯定，用真實生活需求打造你的幸福居所。」<br>
+            自然涵蓋 6 組目標關鍵字，160 字以內符合 Google 顯示限制。
+          </div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">LocalBusiness Schema 建立</div>
+          <div class="check-desc">
+            填入項目：公司名稱（若善室內裝修設計有限公司）、地址（台中市西區東興路三段160號5樓之1）、電話（+886-4-2328-1088）、Email、營業時間（週一至五 09:00–17:00）、GPS 座標、價格區間（$$$）。<br>
+            決策理由：LocalBusiness Schema 是讓 Google 確認若善是「台中在地室內設計公司」最直接的方式，影響 Google 地圖搜尋、知識圖譜顯示，以及 AI Overview 引用可信度。
+          </div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">Google Search Console 連結</div>
+          <div class="check-desc">透過 Rank Math 一鍵連結 Search Console，Sitemap 已自動提交。後續可在 Search Console 追蹤「台中室內設計」等關鍵字的曝光量與排名變化。</div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">H1 標籤修正（從無到有）</div>
+          <div class="check-desc">
+            執行前：首頁 Hero 大標「Follow Your Arrow」設為 H2，首頁完全沒有 H1 標籤，Google 無法識別頁面主題。<br>
+            執行後：透過 Elementor 將 HTML Tag 從 H2 改為 H1，視覺設計完全不變。<br>
+            補充說明：H1 內容為英文「Follow Your Arrow」，對中文關鍵字排名貢獻有限，待品牌介紹段落加入後再補強。
+          </div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">Focus Keyword 設定</div>
+          <div class="check-desc">設定主要追蹤關鍵字「台中室內設計」，Rank Math 將持續監測此關鍵字在各評分項目的表現，作為後續優化的基準指標。</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BEFORE AFTER 彙整 -->
+    <h3 style="font-size:13px;font-weight:500;margin-bottom:1rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— 首頁核心元素 改版對照</h3>
+    <div class="before-after">
+      <div class="ba-col before">
+        <div class="ba-label">執行前</div>
+        <div class="ba-text">
+          <strong>Title Tag：</strong>若善設計 – 台中空間設計<br><br>
+          <strong>Meta Description：</strong>（空白，Google 自動截取）<br><br>
+          <strong>H1：</strong>（不存在）<br><br>
+          <strong>LocalBusiness Schema：</strong>（不存在）<br><br>
+          <strong>Search Console：</strong>（未連結）<br><br>
+          <strong>SEO 分數：</strong>18 / 100
+        </div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-label">執行後</div>
+        <div class="ba-text">
+          <strong>Title Tag：</strong>台中室內設計｜若善設計 – 現代簡約住宅，獲獎設計團隊<br><br>
+          <strong>Meta Description：</strong>含 6 組關鍵字，160 字完整設定<br><br>
+          <strong>H1：</strong>Follow Your Arrow（已設為 H1）<br><br>
+          <strong>LocalBusiness Schema：</strong>地址、電話、座標、營業時間完整<br><br>
+          <strong>Search Console：</strong>已連結，Sitemap 已提交<br><br>
+          <strong>SEO 分數：</strong>66 / 100（+48）
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: 工具說明 -->
+  <section id="tools">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 03</span>
+      <h2 class="sec-title">使用工具與選擇理由</h2>
+    </div>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-icon">🔧</div>
+        <div class="tool-name">Rank Math SEO</div>
+        <div class="tool-desc">WordPress SEO 外掛。選用原因：免費版含完整 Schema 支援、多關鍵字追蹤、Search Console 整合，功能優於 Yoast 免費版。</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🎨</div>
+        <div class="tool-name">Elementor</div>
+        <div class="tool-desc">若善網站使用的頁面建構器。H1 標籤修正透過 Elementor 的 HTML Tag 設定完成，無需修改程式碼。</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📊</div>
+        <div class="tool-name">Google Search Console</div>
+        <div class="tool-desc">已透過 Rank Math 連結。用於追蹤「台中室內設計」等關鍵字的曝光量、點擊率、排名變化。</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🗺</div>
+        <div class="tool-name">LocalBusiness Schema</div>
+        <div class="tool-desc">JSON-LD 結構化資料，透過 Rank Math Local SEO 模組設定。告訴 Google 若善的確切地理位置與聯絡資訊。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: 網域建議 -->
+  <section id="domain">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 04</span>
+      <h2 class="sec-title">網域建議：301 轉址設定</h2>
+    </div>
+    <p class="sec-desc">
+      調查發現若善名下有兩個網域，目前只有 .com.tw 正常運作，.com 為閒置狀態。建議設定 301 永久轉址，將流量與 SEO 權重集中到主網域。
+    </p>
+
+    <div class="domain-card">
+      <div class="domain-icon">✅</div>
+      <div class="domain-body">
+        <div class="domain-url">reasondesign.com.tw</div>
+        <div class="domain-status active">主要網域・運作中</div>
+        <div class="domain-desc">若善設計官網，所有 SEO 工作的目標網域。Google Search Console 已驗證此網域。</div>
+      </div>
+    </div>
+
+    <div class="domain-card">
+      <div class="domain-icon">⚠️</div>
+      <div class="domain-body">
+        <div class="domain-url">reasonsdesign.com（多一個 s）</div>
+        <div class="domain-status idle">閒置中・建議設定轉址</div>
+        <div class="domain-desc">推測為保護品牌或誤購，目前未指向任何網站。每年支付網域費用但未產生任何效益。</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:13px;font-weight:500;margin-bottom:1rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— 301 轉址的優缺點</h3>
+    <div class="before-after" style="margin-bottom:1.5rem;">
+      <div class="ba-col after">
+        <div class="ba-label">設定轉址的好處</div>
+        <div class="ba-text" style="font-size:13px;">
+          ・任何連到 reasonsdesign.com 的外部連結，SEO 權重 100% 轉移到 .com.tw<br><br>
+          ・有人打錯字（多一個 s）也能找到若善，不進入空白頁<br><br>
+          ・讓 Google 明確識別 reasondesign.com.tw 是唯一主要網址<br><br>
+          ・設定一次，之後零維護，GoDaddy 自動轉址
+        </div>
+      </div>
+      <div class="ba-col before">
+        <div class="ba-label">需要注意的地方</div>
+        <div class="ba-text" style="font-size:13px;">
+          ・reasonsdesign.com 未來不能獨立建站，因為它已綁定轉址<br><br>
+          ・需要登入 GoDaddy 設定，操作需 5 分鐘<br><br>
+          ・轉址生效通常需要 24–48 小時的 DNS 傳播時間
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box amber">
+      ⚠️ <strong>給業主的一句話：</strong>reasonsdesign.com 這個網域每年都在付錢，設定轉址讓它幫 .com.tw 加分；不設定就是每年付錢養一個沒有用的網址。建議優先執行。
+    </div>
+
+    <h3 style="font-size:13px;font-weight:500;margin-bottom:1rem;margin-top:1.5rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;">— 設定步驟（GoDaddy）</h3>
+    <div style="background:var(--sand);padding:1.25rem;font-size:13px;line-height:2;border-radius:2px;">
+      1. 登入 GoDaddy → 我的產品<br>
+      2. 找到 reasonsdesign.com → 點「DNS」<br>
+      3. 找到「轉址（Forwarding）」區塊 → 新增轉址<br>
+      4. 類型選「301（永久）」<br>
+      5. 目標網址填：<code style="background:#fff;padding:1px 6px;border-radius:3px;">https://reasondesign.com.tw</code><br>
+      6. 儲存，等待 24–48 小時生效
+    </div>
+  </section>
+
+  <!-- SECTION 5: 下週計畫 -->
+  <section id="next">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 05</span>
+      <h2 class="sec-title">下週執行計畫：Week 2–3</h2>
+    </div>
+    <p class="sec-desc">
+      Week 1 已完成技術基礎，Week 2–3 的重點是內容建設——讓 Google 有更多文字內容可以解讀，同時為 AEO（AI 搜尋優化）做準備。
+    </p>
+
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-week">待確認</div>
+        <div class="tl-content">
+          <div class="tl-title">首頁品牌介紹段落（需業主確認）</div>
+          <div class="tl-body">若善首頁目前無獨立品牌介紹區塊。建議在作品集下方新增一段，採用「屋主語言」撰寫，自然帶入「台中住宅設計」「現代簡約」「新成屋裝潢」「預售屋客變」「老屋翻新」等關鍵字。需 Josh 確認是否同意加入此區塊及風格方向。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag urgent">待業主確認</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-week">Week 2</div>
+        <div class="tl-content">
+          <div class="tl-title">首頁 FAQ 區塊 + FAQPage Schema</div>
+          <div class="tl-body">在首頁加入 5 組問答（Q&A），同時加入 FAQPage Schema JSON-LD，讓 Google AI Overview 可直接引用若善的答案。FAQPage Schema 需搭配頁面實際內容，因此與品牌介紹段落一起執行效果最佳。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag aeo">AEO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-week">Week 3</div>
+        <div class="tl-content">
+          <div class="tl-title">「預售屋客變」獨立服務頁 ★ 優先</div>
+          <div class="tl-body">「預售屋客變」是台灣特有術語，全台相關頁面稀少，競爭度低。若善建立一頁有深度內容的說明頁（含服務流程、FAQ、Service Schema），預估 1–3 個月內可進台中相關關鍵字前五名。這是 CP 值最高的快贏機會。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag urgent">優先項目 ★</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-week">Week 4</div>
+        <div class="tl-content">
+          <div class="tl-title">作品集圖片 Alt 屬性 + Google Business Profile</div>
+          <div class="tl-body">作品集每張圖的 alt 屬性改為「台中 XX 區 XX 坪新成屋現代簡約客廳設計」格式，提升 Google 圖片搜尋曝光。Google Business Profile 補齊分類（室內設計師）與 Q&A 區，強化本地搜尋排名。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag">圖片搜尋</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box green">
+      📈 <strong>預期成效：</strong>四週執行完成後，「台中室內設計」關鍵字曝光量預估提升 50–80%；「預售屋客變」關鍵字有機會在 1–3 個月內進入前五名；Google AI Overview 被引用機率因 FAQPage Schema 而大幅提升。
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>若善設計 × SEO 執行報告 Week 1 · 2026 年 6 月</p>
+  <p style="margin-top:.3rem;">執行：Readie AI（Marco Liu）· reasondesign.com.tw</p>
+</footer>
+
+</body>
+</html>
