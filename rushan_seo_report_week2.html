@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>若善設計 × SEO 執行報告｜Week 2｜2026.06</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+  :root {
+    --ink:     #1A1814;
+    --warm:    #FAF7F2;
+    --sand:    #EDE8DF;
+    --accent:  #C4783A;
+    --accent2: #3A6B5C;
+    --muted:   #6B655F;
+    --rule:    #D8D3CA;
+    --red:     #C04A3A;
+    --green:   #3A6B5C;
+    --amber:   #B08020;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--warm);
+    border-bottom: 1px solid var(--rule);
+    padding: .6rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: .08em; color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 12px; color: var(--muted); text-decoration: none;
+    letter-spacing: .04em; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .page { max-width: 900px; margin: 0 auto; padding: 5rem 2rem 4rem; }
+
+  .hero {
+    padding: 5rem 0 4rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 4rem;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .hero-eyebrow::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300; line-height: 1.25;
+    letter-spacing: .04em; margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: 15px; color: var(--muted);
+    max-width: 580px; line-height: 1.8; margin-bottom: 2rem;
+  }
+  .hero-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .hero-meta-item { font-size: 12px; color: var(--muted); }
+  .hero-meta-item strong { color: var(--ink); display: block; font-size: 13px; }
+
+  section { margin-bottom: 5rem; scroll-margin-top: 60px; }
+  .sec-header {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 2rem; padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sec-num {
+    font-size: 11px; letter-spacing: .1em;
+    color: var(--accent); font-weight: 500; flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.5rem; font-weight: 400; letter-spacing: .04em;
+  }
+  .sec-desc { color: var(--muted); font-size: 14px; margin-bottom: 2rem; line-height: 1.8; }
+
+  /* DELIVERED PANEL（沿用 score-hero 樣式） */
+  .score-hero {
+    display: flex; align-items: center; gap: 2rem;
+    background: var(--sand); padding: 2rem;
+    border-radius: 2px; margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .deliver-item { flex: 1; min-width: 200px; }
+  .deliver-tag {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--green); font-weight: 500; margin-bottom: .5rem;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .deliver-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.4rem; font-weight: 400; line-height: 1.3;
+    margin-bottom: .4rem;
+  }
+  .deliver-desc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+  .deliver-divider { width: 1px; align-self: stretch; background: var(--rule); }
+
+  /* CHECKLIST */
+  .checklist { margin-bottom: 1.5rem; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; }
+  .check-done { color: var(--green); font-size: 18px; }
+  .check-pending { color: var(--amber); font-size: 18px; }
+  .check-body { flex: 1; }
+  .check-title { font-size: 14px; font-weight: 500; margin-bottom: .2rem; }
+  .check-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* BEFORE AFTER */
+  .before-after {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+    margin-bottom: 1.5rem;
+  }
+  .ba-col { background: var(--warm); padding: 1.25rem; }
+  .ba-col.before { background: #FDF5F4; }
+  .ba-col.after  { background: #F4FAF7; }
+  .ba-label {
+    font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+    font-weight: 500; margin-bottom: .5rem;
+  }
+  .ba-col.before .ba-label { color: var(--red); }
+  .ba-col.after  .ba-label { color: var(--green); }
+  .ba-text { font-size: 13px; line-height: 1.75; color: var(--ink); }
+
+  /* TOOL / METRIC CARDS */
+  .tool-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: .75rem; margin-bottom: 1.5rem;
+  }
+  .tool-card {
+    border: 1px solid var(--rule); border-radius: 2px; padding: 1rem;
+  }
+  .tool-icon { font-size: 1.4rem; margin-bottom: .4rem; }
+  .tool-name { font-size: 13px; font-weight: 500; margin-bottom: .3rem; }
+  .tool-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* NOTE BOX */
+  .note-box {
+    border-left: 3px solid var(--accent);
+    background: #FDF8F2;
+    padding: .75rem 1rem;
+    font-size: 13px; color: var(--ink);
+    line-height: 1.7; margin-bottom: 1rem;
+  }
+  .note-box.green { border-color: var(--green); background: #F4FAF7; }
+  .note-box.red   { border-color: var(--red);   background: #FDF5F4; }
+  .note-box.amber { border-color: var(--amber);  background: #FDFAF2; }
+
+  /* TIMELINE */
+  .timeline { margin-bottom: 1.5rem; }
+  .tl-row {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.25rem 0; border-bottom: 1px solid var(--rule);
+  }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-week {
+    flex-shrink: 0; width: 60px;
+    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; padding-top: 2px;
+  }
+  .tl-content { flex: 1; }
+  .tl-title { font-size: 14px; font-weight: 500; margin-bottom: .35rem; }
+  .tl-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+  .tl-tag {
+    font-size: 10px; padding: 1px 7px; border-radius: 2px;
+    background: var(--sand); color: var(--muted);
+  }
+  .tl-tag.seo  { background: #E6F1FB; color: #0C447C; }
+  .tl-tag.aeo  { background: #EAF2EF; color: var(--green); }
+  .tl-tag.tech { background: #F3EEF8; color: #6B3FA0; }
+  .tl-tag.urgent { background: #FDF3E3; color: #8B5E00; }
+  .tl-tag.tomorrow { background: #FDECEA; color: var(--red); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0; text-align: center;
+    font-size: 12px; color: var(--muted); line-height: 1.8;
+  }
+
+  @media (max-width: 600px) {
+    .before-after { grid-template-columns: 1fr; }
+    .tool-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .score-hero { flex-direction: column; gap: 1.25rem; align-items: stretch; }
+    .deliver-divider { width: auto; height: 1px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">若善設計 × SEO 執行報告 Week 2</a>
+  <div class="nav-links">
+    <a href="#summary">本週摘要</a>
+    <a href="#minutes">會議記錄</a>
+    <a href="#radar">搜尋雷達</a>
+    <a href="#tomorrow">明日執行</a>
+    <a href="#next">下週計畫</a>
+    <a href="rushan_seo_report_week1.html">← Week 1</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">若善設計 SEO 執行報告</div>
+    <h1>Week 2 完成，<br>SEO 成效開始<em>看得見</em></h1>
+    <p class="hero-sub">
+      Week 1 把若善網站的 SEO 技術基礎打好（評分 18 → 66）；Week 2 的重點是「讓成效看得見、讓系統幫你記事」。本週在若善自己的系統 Reason OS 內，新增了「會議記錄」與「搜尋雷達」兩個模組；其中搜尋雷達直接把 Week 1 的優化成效拉進若善後台。FAQ 區塊與社群分享圖排定明日（6/22）執行。
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>執行日期</strong>2026 年 6 月 19–21 日</div>
+      <div class="hero-meta-item"><strong>執行範圍</strong>Reason OS 系統模組 + SEO 成效監測</div>
+      <div class="hero-meta-item"><strong>執行人</strong>Readie AI（Marco Liu）</div>
+      <div class="hero-meta-item"><strong>網站</strong>reasondesign.com.tw</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: 本週摘要 -->
+  <section id="summary">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 01</span>
+      <h2 class="sec-title">本週摘要：兩個模組上線</h2>
+    </div>
+    <p class="sec-desc">
+      Week 2 在 Reason OS（若善 Mac Mini 上的工作系統）內交付兩個新模組。一個讓團隊的會議內容有地方好好記、且自動連到客戶與廠商資料；一個把官網在 Google 上的真實表現，每天自動抓回來放在若善自己手上。
+    </p>
+
+    <div class="score-hero">
+      <div class="deliver-item">
+        <div class="deliver-tag">✅ 本週上線</div>
+        <div class="deliver-name">會議記錄 Minutes</div>
+        <div class="deliver-desc">會議內容可分類業主／廠商、連結真實客戶資料、現場照片直接瀏覽。</div>
+      </div>
+      <div class="deliver-divider"></div>
+      <div class="deliver-item">
+        <div class="deliver-tag">✅ 本週上線</div>
+        <div class="deliver-name">搜尋雷達 Search Radar</div>
+        <div class="deliver-desc">串接官網 Google 搜尋數據，每天自動更新，主動找出該優化的關鍵字。</div>
+      </div>
+    </div>
+
+    <div class="note-box amber">
+      🗓 <strong>明日（6/22）排程：</strong>首頁 FAQ 區塊 + FAQPage Schema、社群分享 OG 橫幅圖兩項，已排定明天執行，詳見下方「明日執行」段落。
+    </div>
+  </section>
+
+  <!-- SECTION 2: 會議記錄 -->
+  <section id="minutes">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 02</span>
+      <h2 class="sec-title">會議記錄（Minutes）正式上線</h2>
+    </div>
+    <p class="sec-desc">
+      若善過去的會議內容散在 LINE、便利貼與個人記憶裡。會議記錄模組讓每一場會議都有固定的地方記錄，並且和系統內的客戶、廠商資料連動，避免「同一個業主、不同人記成不同名字」的混亂。
+    </p>
+
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">會議可標注「業主」或「廠商」分類</div>
+          <div class="check-desc">新增會議記錄時，先選這場是跟業主談、還是跟廠商談，之後查找與統計都更清楚。</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">標注對象需連結系統內真實資料</div>
+          <div class="check-desc">業主／廠商標注必須對應到系統裡實際存在的客戶或廠商，確保全公司用的是同一份資料，不會各記各的。</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">對象尚未建檔可當下直接新增</div>
+          <div class="check-desc">遇到還沒建檔的新業主或新廠商，不必中斷流程——在記會議的當下填姓名＋電話即可新增，順手完成建檔。</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">一場會議可同時連結多位業主與廠商</div>
+          <div class="check-desc">符合實務——一場會議常常業主、設計、工班、廠商都在場，系統允許同時掛上多位對象，完整還原現場。</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">現場記錄照片可直接在頁面瀏覽</div>
+          <div class="check-desc">會議現場拍的丈量、現況、討論白板等照片，直接附在該場會議頁面上瀏覽，不必再翻相簿或群組訊息。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box green">
+      💡 <strong>對若善的意義：</strong>會議內容、對象、照片三者綁在一起，且連到統一的客戶資料庫。日後查「這個業主我們談過幾次、談了什麼、現場長怎樣」，一頁看完。
+    </div>
+  </section>
+
+  <!-- SECTION 3: 搜尋雷達 -->
+  <section id="radar">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 03</span>
+      <h2 class="sec-title">搜尋雷達（Search Radar）新模組</h2>
+    </div>
+    <p class="sec-desc">
+      Week 1 做的 SEO 優化，過去要登入 Google 後台才看得到成效，且 Google 只保留 16 個月資料。搜尋雷達把官網在 Google 上的真實表現，每天自動抓進若善自己的系統，永久保存，並主動把「該優化哪個關鍵字」整理好給你。
+    </p>
+
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">串接官網 Google Search Console 資料</div>
+          <div class="check-desc">直接連到 reasondesign.com.tw 的 Google 搜尋數據來源，資料就是 Google 自己的數字，準確可信。</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">首頁四大指標一眼看完</div>
+          <div class="check-desc">點擊數、曝光數、點擊率（CTR）、平均排名四個關鍵數字放在最上方，網站在 Google 上的整體表現一目了然。</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">近 7 / 28 / 90 / 365 天搜尋趨勢折線圖</div>
+          <div class="check-desc">可切換不同時間區間，看每日搜尋表現的變化趨勢，Week 1 優化的成長軌跡會隨資料累積逐漸顯現。</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">自動列出「成長最快關鍵字」與「臨門一腳關鍵字」</div>
+          <div class="check-desc">系統自動挑出近期成長最快的關鍵字，以及排名在第 5–15 名、再推一把就能上 Google 首頁的關鍵字——這就是下一步該優化的明確清單。</div>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon check-done">✓</div>
+        <div class="check-body">
+          <div class="check-title">每天早上 06:00 自動抓取最新資料</div>
+          <div class="check-desc">排程自動更新，不需要人工操作，每天打開就是最新狀態。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="before-after">
+      <div class="ba-col before">
+        <div class="ba-label">過去</div>
+        <div class="ba-text">
+          ・要登入 Google 後台才看得到<br><br>
+          ・介面複雜，數字多但看不出該做什麼<br><br>
+          ・Google 只保留 16 個月，舊資料會消失<br><br>
+          ・看不出「下一步該優化哪個字」
+        </div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-label">現在（搜尋雷達）</div>
+        <div class="ba-text">
+          ・在若善自己系統內，打開就看<br><br>
+          ・四大指標 + 趨勢圖，一眼看懂<br><br>
+          ・資料每天累積、永久保存，成為若善資產<br><br>
+          ・系統直接列出該優化的關鍵字清單
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box green">
+      📈 <strong>與 Week 1 的銜接：</strong>Week 1 設定的目標關鍵字「台中室內設計」等，現在可以在搜尋雷達持續追蹤曝光與排名變化。Google 重新爬取與排名反映需 3–14 天，資料累積越久，趨勢判讀越準。
+    </div>
+  </section>
+
+  <!-- SECTION 4: 明日執行 -->
+  <section id="tomorrow">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 04</span>
+      <h2 class="sec-title">明日執行（6/22）</h2>
+    </div>
+    <p class="sec-desc">
+      以下兩項為 Week 1 計畫中的內容建設項目，已排定明天執行，於此先行說明。
+    </p>
+
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-week">明天</div>
+        <div class="tl-content">
+          <div class="tl-title">首頁 FAQ 區塊 + FAQPage Schema</div>
+          <div class="tl-body">在首頁加入常見問答（Q&A），並加上 FAQPage 結構化資料（JSON-LD），讓 Google 的 AI 摘要（AI Overview）能直接引用若善的答案，自然帶入「預售屋客變」「老屋翻新」等關鍵字。完成後，搜尋雷達即可開始追蹤這些字的成效。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag aeo">AEO</span>
+            <span class="tl-tag tomorrow">明日執行</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-week">明天</div>
+        <div class="tl-content">
+          <div class="tl-title">社群分享 OG 橫幅圖設定</div>
+          <div class="tl-body">目前若善網站在 LINE／Facebook 分享時，手機版僅顯示小縮圖，吸引力不足。明日設定社群分享專用的橫幅圖（1200×630px），讓網站連結被分享時顯示為大張代表圖。此調整不影響網頁本身呈現，單純優化分享預覽效果。<br><strong>需業主提供：</strong>一張代表作品全景照（橫式），Marco 負責後續上傳設定。</div>
+          <div class="tl-tags">
+            <span class="tl-tag">社群分享</span>
+            <span class="tl-tag urgent">待業主提供素材</span>
+            <span class="tl-tag tomorrow">明日執行</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: 下週計畫 -->
+  <section id="next">
+    <div class="sec-header">
+      <span class="sec-num">SECTION 05</span>
+      <h2 class="sec-title">下週執行計畫：Week 3</h2>
+    </div>
+    <p class="sec-desc">
+      完成首頁內容建設後，Week 3 進入「主題服務頁」階段，鎖定競爭度低、成效快的關鍵字機會。
+    </p>
+
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-week">Week 3</div>
+        <div class="tl-content">
+          <div class="tl-title">「預售屋客變」獨立服務頁 ★ 優先</div>
+          <div class="tl-body">「預售屋客變」是台灣特有術語，全台相關頁面稀少、競爭度低。若善建立一頁有深度的說明頁（服務流程、FAQ、Service Schema），預估 1–3 個月內可進台中相關關鍵字前五名。這是目前 CP 值最高的快贏機會，成效可在搜尋雷達追蹤。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag urgent">優先項目 ★</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-week">Week 3</div>
+        <div class="tl-content">
+          <div class="tl-title">首頁品牌介紹段落（需業主確認）</div>
+          <div class="tl-body">在作品集下方新增一段品牌介紹，採「屋主語言」撰寫，自然帶入「台中住宅設計」「現代簡約」「新成屋裝潢」等關鍵字，補強首頁中文內容權重。需 Josh 確認是否同意加入此區塊及風格方向。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag urgent">待業主確認</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-week">Week 4</div>
+        <div class="tl-content">
+          <div class="tl-title">作品集圖片 Alt 屬性 + Google Business Profile</div>
+          <div class="tl-body">作品集每張圖的 alt 屬性改為「台中 XX 區 XX 坪新成屋現代簡約客廳設計」格式，提升 Google 圖片搜尋曝光；Google Business Profile 補齊分類與 Q&A，強化本地搜尋排名。</div>
+          <div class="tl-tags">
+            <span class="tl-tag seo">SEO</span>
+            <span class="tl-tag">圖片搜尋</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box green">
+      📊 <strong>本週起的觀測方式：</strong>從 Week 2 開始，所有 SEO 優化的成效都會反映在「搜尋雷達」上。後續每週報告將直接引用搜尋雷達的真實數據，讓成效有憑有據。
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>若善設計 × SEO 執行報告 Week 2 · 2026 年 6 月</p>
+  <p style="margin-top:.3rem;">執行：Readie AI（Marco Liu）· reasondesign.com.tw</p>
+</footer>
+
+</body>
+</html>
