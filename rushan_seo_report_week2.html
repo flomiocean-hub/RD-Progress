@@ -236,10 +236,10 @@
     <div class="hero-eyebrow">若善設計 SEO 執行報告</div>
     <h1>Week 2 完成，<br>SEO 成效開始<em>看得見</em></h1>
     <p class="hero-sub">
-      Week 1 把若善網站的 SEO 技術基礎打好（評分 18 → 66）；Week 2 的重點是「讓成效看得見、讓系統幫你記事」。本週在若善自己的系統 Reason OS 內，新增了「會議記錄」與「搜尋雷達」兩個模組；其中搜尋雷達直接把 Week 1 的優化成效拉進若善後台。FAQ 區塊與社群分享圖排定明日（6/22）執行。
+      Week 1 把若善網站的 SEO 技術基礎打好（評分 18 → 66）；Week 2 的重點是「讓成效看得見、讓系統幫你記事」。本週在若善自己的系統 Reason OS 內，新增了「會議記錄」與「搜尋雷達」兩個模組；6/22 補完首頁 FAQPage Schema（7 題 + JSON-LD 注入）與社群分享 OG 圖設定，Week 2 全部交付完成。
     </p>
     <div class="hero-meta">
-      <div class="hero-meta-item"><strong>執行日期</strong>2026 年 6 月 19–21 日</div>
+      <div class="hero-meta-item"><strong>執行日期</strong>2026 年 6 月 19–22 日</div>
       <div class="hero-meta-item"><strong>執行範圍</strong>Reason OS 系統模組 + SEO 成效監測</div>
       <div class="hero-meta-item"><strong>執行人</strong>Readie AI（Marco Liu）</div>
       <div class="hero-meta-item"><strong>網站</strong>reasondesign.com.tw</div>
@@ -250,17 +250,29 @@
   <section id="summary">
     <div class="sec-header">
       <span class="sec-num">SECTION 01</span>
-      <h2 class="sec-title">本週摘要：兩個模組上線</h2>
+      <h2 class="sec-title">本週摘要：五項功能上線</h2>
     </div>
     <p class="sec-desc">
-      Week 2 在 Reason OS（若善 Mac Mini 上的工作系統）內交付兩個新模組。一個讓團隊的會議內容有地方好好記、且自動連到客戶與廠商資料；一個把官網在 Google 上的真實表現，每天自動抓回來放在若善自己手上。
+      Week 2 在 Reason OS（若善 Mac Mini 上的工作系統）內交付五項功能。會議記錄、現場記錄、行程管理讓日常工作有地方好好記、資料留在自己手上；搜尋雷達把官網 Google 表現每天自動抓回若善系統；6/22 補完首頁 FAQ Schema 與 OG 社群分享圖，Week 2 全部交付完成。
     </p>
 
-    <div class="score-hero">
+    <div class="score-hero" style="flex-wrap:wrap; gap:1px;">
       <div class="deliver-item">
         <div class="deliver-tag">✅ 本週上線</div>
         <div class="deliver-name">會議記錄 Minutes</div>
-        <div class="deliver-desc">會議內容可分類業主／廠商、連結真實客戶資料、現場照片直接瀏覽。</div>
+        <div class="deliver-desc">錄音上傳 Mac Mini 自動語音轉文字→ AI 整理成報告；或 LINE 短語音／文字直接給小善記錄。</div>
+      </div>
+      <div class="deliver-divider"></div>
+      <div class="deliver-item">
+        <div class="deliver-tag">✅ 本週上線</div>
+        <div class="deliver-name">現場記錄</div>
+        <div class="deliver-desc">工地現場用 LINE 傳照片＋文字，說「完成」後歸檔進 Reason OS，可查詢與交辦追蹤。</div>
+      </div>
+      <div class="deliver-divider"></div>
+      <div class="deliver-item">
+        <div class="deliver-tag">✅ 本週上線</div>
+        <div class="deliver-name">公司日程 / 個人行程</div>
+        <div class="deliver-desc">Reason OS 點選查今日／本週／下週公司行程；個人行程可綁定 Google Calendar（跟小善說「連結我的行事曆」）。</div>
       </div>
       <div class="deliver-divider"></div>
       <div class="deliver-item">
@@ -270,8 +282,8 @@
       </div>
     </div>
 
-    <div class="note-box amber">
-      🗓 <strong>明日（6/22）排程：</strong>首頁 FAQ 區塊 + FAQPage Schema、社群分享 OG 橫幅圖兩項，已排定明天執行，詳見下方「明日執行」段落。
+    <div class="note-box green">
+      ✅ <strong>6/22 執行完成：</strong>首頁 FAQPage Schema（7 題 JSON-LD）已透過 WPCode 注入頁面 head，OG 社群分享圖已設定至 Rank Math，Week 2 全部交付完成。
     </div>
   </section>
 
@@ -282,7 +294,7 @@
       <h2 class="sec-title">會議記錄（Minutes）正式上線</h2>
     </div>
     <p class="sec-desc">
-      若善過去的會議內容散在 LINE、便利貼與個人記憶裡。會議記錄模組讓每一場會議都有固定的地方記錄，並且和系統內的客戶、廠商資料連動，避免「同一個業主、不同人記成不同名字」的混亂。
+      若善過去的會議內容散在 LINE、便利貼與個人記憶裡。會議記錄模組讓每一場會議都有固定的地方記錄，並且和系統內的客戶、廠商資料連動。支援三種輸入方式：Reason OS 上傳錄音檔（Mac Mini 自動語音轉文字→ AI 整理成報告存檔）、LINE 短語音直接說、或文字輸入，三種都走 Mac Mini 本地處理，資料不出公司。
     </p>
 
     <div class="checklist">
@@ -402,39 +414,47 @@
     </div>
   </section>
 
-  <!-- SECTION 4: 明日執行 -->
+  <!-- SECTION 4: 6/22 執行 -->
   <section id="tomorrow">
     <div class="sec-header">
       <span class="sec-num">SECTION 04</span>
-      <h2 class="sec-title">明日執行（6/22）</h2>
+      <h2 class="sec-title">6/22 執行更新</h2>
     </div>
     <p class="sec-desc">
-      以下兩項為 Week 1 計畫中的內容建設項目，已排定明天執行，於此先行說明。
+      OG 素材已由 Josh 提供（品牌橫幅圖），FAQ 內容與 Schema 代碼已備妥。兩項均已進入 WordPress 實作階段。
     </p>
+
+    <div class="note-box green">
+      🗂 <strong>實作包已備妥：</strong>所有代碼與 WordPress 操作步驟詳見 <a href="6_22_implementation.html" style="color:var(--accent);font-weight:500;">6/22 實作指令包</a>，可直接開啟操作。
+    </div>
 
     <div class="timeline">
       <div class="tl-row">
-        <div class="tl-week">明天</div>
+        <div class="tl-week">6/22</div>
         <div class="tl-content">
-          <div class="tl-title">首頁 FAQ 區塊 + FAQPage Schema</div>
-          <div class="tl-body">在首頁加入常見問答（Q&A），並加上 FAQPage 結構化資料（JSON-LD），讓 Google 的 AI 摘要（AI Overview）能直接引用若善的答案，自然帶入「預售屋客變」「老屋翻新」等關鍵字。完成後，搜尋雷達即可開始追蹤這些字的成效。</div>
+          <div class="tl-title">首頁 FAQPage Schema ✅ 已完成</div>
+          <div class="tl-body">
+            7 題 FAQ 問答自然帶入「預售屋客變」「老屋翻新」「台中室內設計費用」「現代簡約」等核心關鍵字。FAQPage JSON-LD 已透過 WPCode 插件注入首頁 &lt;head&gt;，頁面原始碼確認存在。Google 2023 年後限縮 FAQ Rich Results 顯示範圍，但 JSON-LD 仍持續供應 Google AI Overview（AEO 目標）。
+          </div>
           <div class="tl-tags">
             <span class="tl-tag seo">SEO</span>
             <span class="tl-tag aeo">AEO</span>
-            <span class="tl-tag tomorrow">明日執行</span>
+            <span class="tl-tag" style="background:#EAF2EF;color:#3A6B5C;">✅ 已完成</span>
           </div>
         </div>
       </div>
 
       <div class="tl-row">
-        <div class="tl-week">明天</div>
+        <div class="tl-week">6/22</div>
         <div class="tl-content">
-          <div class="tl-title">社群分享 OG 橫幅圖設定</div>
-          <div class="tl-body">目前若善網站在 LINE／Facebook 分享時，手機版僅顯示小縮圖，吸引力不足。明日設定社群分享專用的橫幅圖（1200×630px），讓網站連結被分享時顯示為大張代表圖。此調整不影響網頁本身呈現，單純優化分享預覽效果。<br><strong>需業主提供：</strong>一張代表作品全景照（橫式），Marco 負責後續上傳設定。</div>
+          <div class="tl-title">社群分享 OG 橫幅圖 ✅ 已完成</div>
+          <div class="tl-body">
+            Josh 提供品牌橫幅圖（RDlogo.jpg）——深藍底色搭配若善手寫 Logo，簡潔、識別度高，無需再製。上傳到 WordPress 媒體庫後，在 Rank Math 設定為首頁及全站預設社群分享圖即完成。<br>
+            <strong>預期效果：</strong>reasondesign.com.tw 連結分享至 LINE / FB / IG 時，顯示大張品牌橫幅，視覺衝擊大幅提升。
+          </div>
           <div class="tl-tags">
             <span class="tl-tag">社群分享</span>
-            <span class="tl-tag urgent">待業主提供素材</span>
-            <span class="tl-tag tomorrow">明日執行</span>
+            <span class="tl-tag" style="background:#EAF2EF;color:#3A6B5C;">✅ 已完成</span>
           </div>
         </div>
       </div>

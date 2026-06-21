@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>若善設計 × SEO 6/22 實作包｜FAQ Schema + OG 圖設定</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink:    #1A1814;
+    --warm:   #FAF7F2;
+    --sand:   #EDE8DF;
+    --accent: #C4783A;
+    --muted:  #6B655F;
+    --rule:   #D8D3CA;
+    --green:  #3A6B5C;
+    --red:    #C04A3A;
+    --amber:  #B08020;
+    --code-bg:#1E1E2E;
+    --code-fg:#CDD6F4;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--warm); color: var(--ink);
+    font-size: 15px; line-height: 1.75;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--warm); border-bottom: 1px solid var(--rule);
+    padding: .6rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-family:'Noto Serif TC',serif; font-size:13px; font-weight:500; letter-spacing:.08em; text-decoration:none; color:var(--ink); }
+  .nav-links { display:flex; gap:1.5rem; }
+  .nav-links a { font-size:12px; color:var(--muted); text-decoration:none; letter-spacing:.04em; transition:color .2s; }
+  .nav-links a:hover { color:var(--ink); }
+
+  .page { max-width:900px; margin:0 auto; padding:5rem 2rem 4rem; }
+
+  .hero { padding:4rem 0 3rem; border-bottom:1px solid var(--rule); margin-bottom:3rem; }
+  .eyebrow {
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent); font-weight:500; margin-bottom:1.2rem;
+    display:flex; align-items:center; gap:.6rem;
+  }
+  .eyebrow::after { content:''; flex:1; max-width:60px; height:1px; background:var(--accent); }
+  .hero h1 {
+    font-family:'Noto Serif TC',serif;
+    font-size:clamp(1.8rem,4vw,2.6rem); font-weight:300;
+    line-height:1.25; letter-spacing:.04em; margin-bottom:1rem;
+  }
+  .hero h1 em { font-style:normal; color:var(--accent); }
+  .hero-sub { font-size:14px; color:var(--muted); max-width:560px; line-height:1.8; }
+
+  section { margin-bottom:4rem; scroll-margin-top:60px; }
+  .sec-header {
+    display:flex; align-items:baseline; gap:1rem;
+    margin-bottom:1.5rem; padding-bottom:1rem;
+    border-bottom:1px solid var(--rule);
+  }
+  .sec-num { font-size:11px; letter-spacing:.1em; color:var(--accent); font-weight:500; flex-shrink:0; }
+  .sec-title { font-family:'Noto Serif TC',serif; font-size:1.4rem; font-weight:400; letter-spacing:.04em; }
+
+  .note-box {
+    border-left:3px solid var(--accent);
+    background:#FDF8F2; padding:.75rem 1rem;
+    font-size:13px; color:var(--ink); line-height:1.7;
+    margin-bottom:1.25rem;
+  }
+  .note-box.green { border-color:var(--green); background:#F4FAF7; }
+  .note-box.amber { border-color:var(--amber); background:#FDFAF2; }
+
+  /* Steps */
+  .steps { counter-reset:step; margin-bottom:1.5rem; }
+  .step {
+    counter-increment:step;
+    display:flex; gap:1.25rem; align-items:flex-start;
+    padding:1rem 0; border-bottom:1px solid var(--rule);
+  }
+  .step:last-child { border-bottom:none; }
+  .step-num {
+    flex-shrink:0; width:32px; height:32px;
+    border-radius:50%; background:var(--sand);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:500; color:var(--accent);
+  }
+  .step-body { flex:1; }
+  .step-title { font-size:14px; font-weight:500; margin-bottom:.25rem; }
+  .step-desc { font-size:13px; color:var(--muted); line-height:1.65; }
+
+  /* Code blocks */
+  .code-wrap { margin-bottom:1.5rem; }
+  .code-label {
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); font-weight:500;
+    padding:.4rem .75rem; background:var(--sand);
+    border:1px solid var(--rule); border-bottom:none;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .copy-hint { font-size:10px; color:var(--accent); }
+  pre {
+    background:var(--code-bg); color:var(--code-fg);
+    padding:1.25rem; overflow-x:auto;
+    font-family:'JetBrains Mono', monospace; font-size:12.5px;
+    line-height:1.7; border:1px solid #313244;
+  }
+  code { font-family:'JetBrains Mono', monospace; }
+
+  /* FAQ preview */
+  .faq-preview { border:1px solid var(--rule); border-radius:2px; margin-bottom:1.5rem; }
+  .faq-item { padding:1.25rem; border-bottom:1px solid var(--rule); }
+  .faq-item:last-child { border-bottom:none; }
+  .faq-q { font-size:14px; font-weight:500; margin-bottom:.4rem; color:var(--ink); }
+  .faq-q::before { content:'Q  '; color:var(--accent); font-weight:600; }
+  .faq-a { font-size:13px; color:var(--muted); line-height:1.7; }
+  .faq-a::before { content:'A  '; color:var(--green); font-weight:600; color:var(--green); }
+
+  footer {
+    border-top:1px solid var(--rule); padding:2rem 0;
+    text-align:center; font-size:12px; color:var(--muted); line-height:1.8;
+  }
+
+  @media(max-width:600px) {
+    .nav-links { display:none; }
+    pre { font-size:11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">若善設計 × SEO 6/22 實作包</a>
+  <div class="nav-links">
+    <a href="#og">OG 圖設定</a>
+    <a href="#faq">FAQ 內容</a>
+    <a href="#schema">Schema 代碼</a>
+    <a href="#wp">WordPress 操作</a>
+    <a href="rushan_seo_report_week2.html">← Week 2 報告</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="eyebrow">若善設計 SEO · 2026.06.22 實作</div>
+    <h1>FAQ Schema<em> + OG 圖</em><br>實作指令包</h1>
+    <p class="hero-sub">
+      本文件包含今日兩項任務的所有程式碼與操作步驟，可直接貼進 WordPress 執行，無需開發背景。
+    </p>
+  </div>
+
+  <!-- SECTION 1: OG 圖 -->
+  <section id="og">
+    <div class="sec-header">
+      <span class="sec-num">TASK 01</span>
+      <h2 class="sec-title">社群分享 OG 圖設定</h2>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.8;">
+      Josh 提供的品牌橫幅圖（RDlogo.jpg）品質佳、識別度高，直接用作全站預設 OG 圖。<br>
+      設定完成後，reasondesign.com.tw 的連結被分享在 LINE、FB、IG 時，都會顯示這張圖。
+    </p>
+
+    <div class="note-box green">
+      ✅ <strong>素材狀態：</strong>RDlogo.jpg 已收到，可直接上傳使用。無需再製作。
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">上傳圖片到 WordPress 媒體庫</div>
+          <div class="step-desc">WordPress 後台 → 媒體 → 新增媒體 → 上傳 <code>RDlogo.jpg</code><br>上傳後點選圖片，複製右側「檔案 URL」備用。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">設定 Rank Math 全站預設社群圖</div>
+          <div class="step-desc">
+            Rank Math → Titles &amp; Meta → 首頁（Home Page）→ 上方分頁切到「<strong>Social</strong>」→<br>
+            「Facebook 縮圖」欄位 → 選擇媒體 → 選剛才上傳的 RDlogo.jpg → 儲存。
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">設定 Rank Math 全域備用圖（其他頁面沒有自訂圖時自動套用）</div>
+          <div class="step-desc">
+            Rank Math → General Settings → Links → 往下找「<strong>Default OpenGraph Thumbnail</strong>」→<br>
+            選同一張 RDlogo.jpg → 儲存變更。
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">驗證（30 秒）</div>
+          <div class="step-desc">
+            開新分頁，進 <a href="https://developers.facebook.com/tools/debug/" target="_blank" style="color:var(--accent);">Facebook 分享偵錯工具</a>（無需登入）→ 貼上 <code>https://reasondesign.com.tw</code> → 點「偵錯」→ 確認「預覽圖片」顯示品牌圖即完成。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: FAQ 內容 -->
+  <section id="faq">
+    <div class="sec-header">
+      <span class="sec-num">TASK 02</span>
+      <h2 class="sec-title">首頁 FAQ — 問答內容</h2>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.8;">
+      共 7 題，每題自然帶入核心關鍵字。內容採「業主語言」撰寫，Google AI Overview 可直接引用。
+    </p>
+
+    <div class="faq-preview">
+      <div class="faq-item">
+        <div class="faq-q">若善設計提供哪些室內設計服務？</div>
+        <div class="faq-a">若善設計以台中為主要服務據點，提供住宅設計、新成屋裝潢、預售屋客變、老屋翻新及商業空間設計等完整服務。我們從業主真實的生活需求出發，以現代簡約為設計核心，為每位客戶打造獨一無二的居住空間。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">什麼是預售屋客變？若善設計可以協助嗎？</div>
+        <div class="faq-a">預售屋客變是指在預售屋完工前，向建商申請變更室內格局、開口位置或建材規格的流程。由於客變有時間限制，且完工後再修改成本大幅增加，建議在交屋前及早與設計師討論。若善設計提供完整的預售屋客變服務，協助業主在時間壓力內做出最適合長期生活的格局決策。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">老屋翻新和新成屋裝潢，流程有什麼不同？</div>
+        <div class="faq-a">老屋翻新需要在設計前進行結構評估與現況勘察，釐清管線是否需要更新、牆面是否需要補強，施工期通常比新成屋略長。新成屋裝潢則從乾淨的毛坯屋出發，設計自由度更高，可從格局、動線到建材風格全面規劃。兩種類型若善設計都有豐富的執行經驗，會依實際屋況提供最適合的建議。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">台中室內設計費用大概是多少？</div>
+        <div class="faq-a">室內設計費用因坪數、設計複雜度、建材品質和工程範圍不同而有所差異。若善設計採透明報價，從初步洽談到提案階段，我們會依照您的需求與預算提供詳細的費用估算。建議直接預約免費初談，讓設計師了解您的空間與需求後，提供最精準的報價。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">若善設計的設計風格是什麼？</div>
+        <div class="faq-a">若善設計以現代簡約風格為核心，強調空間秩序、光線運用與建材質感的搭配。我們不追求單一風格標籤，而是從每位業主的生活習慣與審美出發，讓空間語言回應真實的居住需求。若善的作品曾榮獲德國 iF Design Award 與美國 MUSE 金獎肯定。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">從設計到完工需要多少時間？</div>
+        <div class="faq-a">一般住宅設計案從洽談到完工約 4–8 個月，依空間坪數與工程範圍調整。若善設計的標準流程分為業務洽談、初步提案、設計合約、工程估驗、裝修施工、完工驗收六個階段，每個階段都有明確的時間節點，讓業主隨時掌握進度。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">若善設計的服務範圍有哪些地區？</div>
+        <div class="faq-a">若善設計以台中市為主要服務範圍，工作室位於台中市西區東興路三段 160 號 5 樓。外縣市案件可依個案討論，歡迎先透過電話 04-2328-1088 或 Email service@reasondesign.com.tw 與我們聯繫。</div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      💡 <strong>關鍵字覆蓋確認：</strong>預售屋客變、老屋翻新、新成屋裝潢、台中室內設計費用、現代簡約、台中室內設計、設計流程 — 全部自然帶入，不生硬。
+    </div>
+  </section>
+
+  <!-- SECTION 3: JSON-LD Schema -->
+  <section id="schema">
+    <div class="sec-header">
+      <span class="sec-num">TASK 02 — CODE</span>
+      <h2 class="sec-title">FAQPage Schema（JSON-LD）</h2>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.8;">
+      貼進 WordPress 後，Google 就能在搜尋結果中直接展開顯示問答，並供 AI Overview 引用。
+    </p>
+
+    <div class="code-wrap">
+      <div class="code-label">
+        JSON-LD · 貼入 Rank Math Schema Builder 或 WP 自訂 HTML 區塊
+        <span class="copy-hint">全選後複製</span>
+      </div>
+<pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "若善設計提供哪些室內設計服務？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "若善設計以台中為主要服務據點，提供住宅設計、新成屋裝潢、預售屋客變、老屋翻新及商業空間設計等完整服務。我們從業主真實的生活需求出發，以現代簡約為設計核心，為每位客戶打造獨一無二的居住空間。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "什麼是預售屋客變？若善設計可以協助嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "預售屋客變是指在預售屋完工前，向建商申請變更室內格局、開口位置或建材規格的流程。由於客變有時間限制，且完工後再修改成本大幅增加，建議在交屋前及早與設計師討論。若善設計提供完整的預售屋客變服務，協助業主在時間壓力內做出最適合長期生活的格局決策。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "老屋翻新和新成屋裝潢，流程有什麼不同？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "老屋翻新需要在設計前進行結構評估與現況勘察，釐清管線是否需要更新、牆面是否需要補強，施工期通常比新成屋略長。新成屋裝潢則從乾淨的毛坯屋出發，設計自由度更高，可從格局、動線到建材風格全面規劃。兩種類型若善設計都有豐富的執行經驗，會依實際屋況提供最適合的建議。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "台中室內設計費用大概是多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "室內設計費用因坪數、設計複雜度、建材品質和工程範圍不同而有所差異。若善設計採透明報價，從初步洽談到提案階段，我們會依照您的需求與預算提供詳細的費用估算。建議直接預約免費初談，讓設計師了解您的空間與需求後，提供最精準的報價。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "若善設計的設計風格是什麼？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "若善設計以現代簡約風格為核心，強調空間秩序、光線運用與建材質感的搭配。我們不追求單一風格標籤，而是從每位業主的生活習慣與審美出發，讓空間語言回應真實的居住需求。若善的作品曾榮獲德國 iF Design Award 與美國 MUSE 金獎肯定。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "從設計到完工需要多少時間？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一般住宅設計案從洽談到完工約 4–8 個月，依空間坪數與工程範圍調整。若善設計的標準流程分為業務洽談、初步提案、設計合約、工程估驗、裝修施工、完工驗收六個階段，每個階段都有明確的時間節點，讓業主隨時掌握進度。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "若善設計的服務範圍有哪些地區？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "若善設計以台中市為主要服務範圍，工作室位於台中市西區東興路三段 160 號 5 樓。外縣市案件可依個案討論，歡迎先透過電話 04-2328-1088 或 Email service@reasondesign.com.tw 與我們聯繫。"
+      }
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+    </div>
+  </section>
+
+  <!-- SECTION 4: WordPress 操作 -->
+  <section id="wp">
+    <div class="sec-header">
+      <span class="sec-num">TASK 02 — WP</span>
+      <h2 class="sec-title">WordPress 操作步驟</h2>
+    </div>
+
+    <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.8;">
+      WordPress 加入 FAQ 的方式有兩種，擇一執行即可：
+    </p>
+
+    <div class="note-box amber">
+      <strong>推薦方式（Rank Math 原生 Schema）</strong> — Rank Math 有內建 FAQ Schema 功能，不需貼程式碼，UI 直接填問答即可，Google 自動識別。
+    </div>
+
+    <p style="font-size:14px;font-weight:500;margin-bottom:.75rem;">方式 A：Rank Math 原生 FAQ Schema（推薦）</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">進入首頁編輯</div>
+          <div class="step-desc">WordPress 後台 → 頁面 → 找到首頁 → 編輯（Elementor 或 Block Editor）</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">開啟 Rank Math Schema</div>
+          <div class="step-desc">右上角找 Rank Math 圖示（或 Block Editor 右側欄）→ 點「Schema」分頁 → 「Add Schema」→ 選「FAQ」</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">填入問答</div>
+          <div class="step-desc">把上方 7 組 Q&A 一題一題填入 FAQ Schema 的欄位 → 儲存頁面</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">在頁面加入 FAQ 可見區塊</div>
+          <div class="step-desc">在 Elementor 中，頁面適當位置（建議在作品集下方、聯絡區塊上方）加入 Accordion 或 Toggle 元件，把同樣 7 題填入作為可見的 FAQ 區塊。Rank Math Schema 和頁面可見內容分開，都要做。</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:14px;font-weight:500;margin:.75rem 0;margin-top:1.5rem;">方式 B：貼入 JSON-LD 代碼（備用）</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Rank Math → General Settings → Analytics → 往下找「Header Code」或安裝 WPCode 插件</div>
+          <div class="step-desc">推薦用 WPCode（免費）或 Rank Math 的 Custom Schema 功能，不要直接改 functions.php</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">貼入上方 Schema 代碼</div>
+          <div class="step-desc">設定為只在「首頁」執行，不要套全站（以免和其他頁面的 Schema 衝突）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box green">
+      ✅ <strong>完成後驗證：</strong>進 <a href="https://search.google.com/test/rich-results" target="_blank" style="color:var(--accent);">Google Rich Results Test</a> → 貼上首頁網址 → 應看到「FAQPage」Schema 通過，可展開顯示 7 題問答。
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>若善設計 × SEO 6/22 實作包 · Readie AI（Marco Liu）</p>
+  <p style="margin-top:.3rem;">reasondesign.com.tw · 2026</p>
+</footer>
+
+</body>
+</html>
